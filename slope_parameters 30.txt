@@ -1,0 +1,4 @@
+phi = 30
+gamma = 2.5
+dx = 0.05
+color = red

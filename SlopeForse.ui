@@ -626,7 +626,7 @@
       <string>Расчитать</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_show_result_2">
+    <widget class="QPushButton" name="pushButton_save_result">
      <property name="geometry">
       <rect>
        <x>10</x>

@@ -303,7 +303,7 @@
       <string>Масштабный коэффициент</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_paramert_file_physic">
+    <widget class="QLineEdit" name="lineEdit_parametr_file_physic">
      <property name="enabled">
       <bool>false</bool>
      </property>

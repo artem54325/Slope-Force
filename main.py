@@ -18,6 +18,7 @@ way_parameters = r"\slope_parameters 35.txt"
 alpha, phi, gamma, H = 45, 35, 2.5, 100
 test = Search_Constant_Test(alpha, phi, gamma, H)
 C = test.getC()
+print("C = " + str(C))
 lamb = test.getlamba()
 print(alpha, phi, C, gamma*lamb/C)
 slope = Argument_search('manual', [alpha, H, phi, gamma, 0.1, 'red'])

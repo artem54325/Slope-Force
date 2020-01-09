@@ -107,7 +107,8 @@ class MyWindow(QtWidgets.QMainWindow):
         alpha = self.lineEdit_alpha.text()
 
         if(self.bool_surface):
-            self.lineEdit_parametr_file_physic.setText(str(name[0]))
+            pass
+            # self.lineEdit_parametr_file_physic.setText(str(name[0]))
             # str(name[0])
             # print('name = ' + name[0])
             # file = open(name, 'r')

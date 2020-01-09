@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>617</width>
-    <height>506</height>
+    <height>607</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>617</width>
-    <height>506</height>
+    <height>607</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>617</width>
-    <height>506</height>
+    <height>607</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -296,19 +296,6 @@
       <string>Объемный вес</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="scale_factor">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>130</y>
-       <width>161</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Масштабный коэффициент</string>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="lineEdit_parametr_file_physic">
      <property name="enabled">
       <bool>false</bool>
@@ -349,16 +336,6 @@
      </property>
      <property name="text">
       <string>Сцепление</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_scale_factor">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>150</y>
-       <width>71</width>
-       <height>22</height>
-      </rect>
      </property>
     </widget>
     <widget class="QLabel" name="label_physic_auto">
@@ -413,35 +390,12 @@
       <string>Файл</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_scale_factor_2">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>150</y>
-       <width>71</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="scale_factor_2">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>130</y>
-       <width>121</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Точность поиска K</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>350</y>
+      <x>10</x>
+      <y>450</y>
       <width>441</width>
       <height>131</height>
      </rect>
@@ -698,7 +652,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>350</y>
+      <y>450</y>
       <width>131</width>
       <height>131</height>
      </rect>
@@ -743,6 +697,77 @@
      </property>
      <property name="text">
       <string>Сохранить</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>360</y>
+      <width>581</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLineEdit" name="lineEdit_K_accuracy">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>40</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_K">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_K">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>10</y>
+       <width>161</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Масштабный коэффициент</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoRepeat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_K_accuracy">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>161</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Точность поиска К</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>

@@ -2,6 +2,9 @@ import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
+from Argument_search import Argument_search
+
+
 class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MyWindow,self).__init__()
@@ -10,10 +13,11 @@ class MyWindow(QtWidgets.QMainWindow):
 
     def initUI(self):
         self.setWindowTitle('Поверхность скольжения')
-        self.scale_factor.setChecked(True)
+        self.slope = None
 
         self.bool_surface = False
         self.bool_physic = False
+        self.bool_K = False
 
         self.pushButton_calculate.clicked.connect(self.calculation)
         self.pushButton_show_result.clicked.connect(self.showResult)
@@ -27,7 +31,10 @@ class MyWindow(QtWidgets.QMainWindow):
 
         self.pushButton_file_physic.clicked.connect(self.physicOpenFile)
         self.pushButton_file_surface.clicked.connect(self.surfaceOpenFile)
-        self.scale_factor.stateChanged.connect(self.onStateScaleFactor)
+        # self.scale_factor.stateChanged.connect(self.onStateScaleFactor)
+
+        self.radioButton_K.clicked.connect(self.KRadio)
+        self.radioButton_K_accuracy.clicked.connect(self.KAccuracyRadio)
 
         # Test Value:
         self.lineEdit_H.setText(str(100))
@@ -38,7 +45,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.lineEdit_dx.setText(str(0.1))
         self.lineEdit_C.setText(str(5.240734270891313))
 
-        self.lineEdit_scale_factor.setText(str(45))
+        self.lineEdit_K.setText(str(100))
 
 
     def userGeometryRadio(self):
@@ -85,6 +92,12 @@ class MyWindow(QtWidgets.QMainWindow):
         self.lineEdit_parametr_file_physic.setEnabled(False)
         self.label_physic_auto.setEnabled(False)
 
+    def KRadio(self):
+        self.bool_K = True
+
+    def KAccuracyRadio(self):
+        self.bool_K = False
+
     def autoPhysicsRadio(self):
         self.bool_physic = True
 
@@ -103,7 +116,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.label_physic_auto.setEnabled(True)
 
     def calculation(self):
-        h = self.lineEdit_H.text()
+        H = self.lineEdit_H.text()
         alpha = self.lineEdit_alpha.text()
 
         if(self.bool_surface):
@@ -124,13 +137,22 @@ class MyWindow(QtWidgets.QMainWindow):
         if (self.bool_physic):
             pass
 
-        scale = self.lineEdit_scale_factor.text()
+        self.slope = Argument_search('manual', [float(alpha), float(H), float(phi), float(gamma), float(dx), 'red'], self)
 
-        if (self.bool_physic):
-            pass
+        if(self.bool_K==False):
+            self.slope.search_best_K(float(C), float(self.lineEdit_K.text()))
+        else:
+            self.slope.draw_slope(float(C), float(self.lineEdit_K_accuracy.text()))
+
+    def writeResult(self, scale, geometr, physic):
+        self.lineEdit_geometr_result.setText('{:.3f}'.format(geometr))
+        self.lineEdit_physic_result.setText('{:.3f}'.format(physic))
+        self.lineEdit_scale_result.setText('{:.3f}'.format(scale))
 
     def showResult(self):
-        pass
+        if(self.slope == None):
+            return
+        self.slope.draw_in_page()
 
     def saveFile(self, text):
         name = QtWidgets.QFileDialog.getSaveFileName(self, 'Сохранить файл')

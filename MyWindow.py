@@ -12,6 +12,9 @@ class MyWindow(QtWidgets.QMainWindow):
         self.setWindowTitle('Поверхность скольжения')
         self.scale_factor.setChecked(True)
 
+        self.bool_surface = False
+        self.bool_physic = False
+
         self.pushButton_calculate.clicked.connect(self.calculation)
         self.pushButton_show_result.clicked.connect(self.showResult)
         self.pushButton_save_result.clicked.connect(self.saveFile)
@@ -39,6 +42,8 @@ class MyWindow(QtWidgets.QMainWindow):
 
 
     def userGeometryRadio(self):
+        self.bool_surface = False
+
         self.label_alpha.setEnabled(True)
         self.label_H.setEnabled(True)
         self.label_file_surface.setEnabled(True)
@@ -49,6 +54,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.pushButton_file_surface.setEnabled(False)
 
     def autoGeometryRadio(self):
+        self.bool_surface = True
+
         self.label_alpha.setEnabled(False)
         self.label_H.setEnabled(False)
         self.label_file_surface.setEnabled(False)
@@ -62,6 +69,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.pushButton_file_surface.setEnabled(True)
 
     def userPhysicsRadio(self):
+        self.bool_physic = False
+
         self.lineEdit_phi.setEnabled(True)
         self.label_phi.setEnabled(True)
         self.lineEdit_gamma.setEnabled(True)
@@ -77,6 +86,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.label_physic_auto.setEnabled(False)
 
     def autoPhysicsRadio(self):
+        self.bool_physic = True
+
         self.lineEdit_phi.setEnabled(False)
         self.label_phi.setEnabled(False)
         self.lineEdit_gamma.setEnabled(False)
@@ -95,13 +106,27 @@ class MyWindow(QtWidgets.QMainWindow):
         h = self.lineEdit_H.text()
         alpha = self.lineEdit_alpha.text()
 
+        if(self.bool_surface):
+            self.lineEdit_parametr_file_physic.setText(str(name[0]))
+            # str(name[0])
+            # print('name = ' + name[0])
+            # file = open(name, 'r')
+            # with file:
+            #     text = file.read()
+            #     print(text)
 
         phi = self.lineEdit_phi.text()
         gamma = self.lineEdit_gamma.text()
         dx = self.lineEdit_dx.text()
         C = self.lineEdit_C.text()
 
+        if (self.bool_physic):
+            pass
+
         scale = self.lineEdit_scale_factor.text()
+
+        if (self.bool_physic):
+            pass
 
     def showResult(self):
         pass
@@ -153,31 +178,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-    # from PyQt5 import QtWidgets, QtGui
-    # from qtLabel import Ui_MainWindow
-    # import sys
-    #
-    #
-    # class mywindow(QtWidgets.QMainWindow):
-    #
-    #     def __init__(self):
-    #         super(mywindow, self).__init__()
-    #         self.ui = Ui_MainWindow()
-    #         self.ui.setupUi(self)
-    #
-    #         self.ui.label.setText("qwewqe")
-    #         # self.ui.pushButton.clicked.connect(self.btnClicked)
-    #
-    #     def calculation(self):
-    #         pass
-    #
-    #     def example(self):
-    #         pass
-    #
-    #
-    # app = QtWidgets.QApplication([])
-    # application = mywindow()
-    # application.show()
-    #
-    # sys.exit(app.exec())

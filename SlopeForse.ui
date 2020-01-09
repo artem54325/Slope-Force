@@ -12,8 +12,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>550</width>
-    <height>340</height>
+    <width>617</width>
+    <height>506</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>617</width>
+    <height>506</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -669,9 +675,9 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>340</y>
+      <y>350</y>
       <width>131</width>
-      <height>141</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -681,7 +687,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
+       <y>50</y>
        <width>111</width>
        <height>31</height>
       </rect>
@@ -694,7 +700,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>10</y>
        <width>111</width>
        <height>31</height>
       </rect>
@@ -707,7 +713,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>110</y>
+       <y>90</y>
        <width>111</width>
        <height>31</height>
       </rect>

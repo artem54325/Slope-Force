@@ -1,4 +1,4 @@
-
+import traceback
 import math
 from inspect import currentframe
 from dataclasses import dataclass
@@ -157,7 +157,7 @@ class Calculate_Slope:
                 if p_prev < f:
                     eta = 1
                     p = self.calculate_p(1, p_prev, f, k, mu, dx_real)
-                    y1 = self.calculate_y1(1, p, f, k, mu, p_prev, y1_**prev)
+                    y1 = self.calculate_y1(1, p, f, k, mu, p_prev, y1_prev)
                     F = self.calculate_F(1, p, f, y, y1, C, gamma, dx_real)
                 else:
 
@@ -187,8 +187,8 @@ class Calculate_Slope:
                 counter_y+=y-y_prev
                 counter_y1+=y1-y1_prev
 
-                if x>160 and x<180:
-                    print("i={} N={} k={:.0f} x={:.2f} y1={:.3f} p={:.3f} F={:.3f} e={} y={}".format(idx, N, k, x, y1, p, F, eta, y))
+                # if x>160 and x<180:
+                    # print("i={} N={} k={:.0f} x={:.2f} y1={:.3f} p={:.3f} F={:.3f} e={} y={}".format(idx, N, k, x, y1, p, F, eta, y))
 
         except Exception as e:
             # print(e)

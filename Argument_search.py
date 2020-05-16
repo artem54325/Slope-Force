@@ -7,7 +7,9 @@ import plotly.graph_objects as go
 
 class Argument_search:
     """docstring for Calculate_Slope"""
-    def __init__(self, type, args):
+    def __init__(self, type, args, window):
+        self.window = window
+
         if type == 'manual':
             [alpha, H, phi, gamma, dx, color] = args
             slope_surface = [[0, 20, 0, round(math.tan(math.radians(alpha)),8)],[1, 20 + H * (math.tan(math.radians(alpha)))**-1, H, 0],[2, 20 + 0.5 * H + H * (math.tan(math.radians(alpha)))**-1, H, 0]]
@@ -26,23 +28,28 @@ class Argument_search:
         return dict[list_keys[0]]
 
     def draw_slope(self, C, K):
-        cY, cF, result_surface = self.slope.caclulate_class_slope(C, K)
+        cY, cF, result_surface = self.slope.caclulate_slope(C, K)
         print("Невязка",cY, cF)
-        x_line = [x[1] for x in result_surface]
-        y1_line = [y[2] for y in result_surface]
-        y_line = [y[6] for y in result_surface]
+        self.x_line = [x[1] for x in result_surface]
+        self.y1_line = [y[2] for y in result_surface]
+        self.y_line = [y[6] for y in result_surface]
+        self.window.writeResult(K, cY, cF)
+
+
+    def draw_in_page(self):
+        if(self.x_line is None):
+            return
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=x_line, y=y1_line,
+        fig.add_trace(go.Scatter(x=self.x_line, y=self.y1_line,
                                  mode='lines',
                                  name='Поверхность скольжения'))
-        fig.add_trace(go.Scatter(x=x_line, y=y_line,
+        fig.add_trace(go.Scatter(x=self.x_line, y=self.y_line,
                                  mode='lines',
                                  name='Поверхность откоса'))
         fig.update_xaxes(showgrid=False, zeroline=False, dtick=5, range=[10,190])
         fig.update_yaxes(showgrid=False, zeroline=False, dtick=5, range=[-10,110])
-        # fig.update_xaxes(showgrid=False, zeroline=False, dtick=5, range=[max(x_line)*-0.01, max(x_line)+max(x_line)*0.01])
-        # fig.update_yaxes(showgrid=False, zeroline=False, dtick=5, range=[max(y_line)*-0.01, max(y_line)+max(y_line)*0.01])
         fig.show()
+
 
     def save_txt_coords(self, name, result_surface):
         x_line = [x[1] for x in result_surface]
@@ -52,11 +59,11 @@ class Argument_search:
             print(idx, x_line[idx], y1_line[idx], sep=' ', file=file)
         file.close()
 
-    def search_best_K(self, C):
-        minK, maxK, razrK = 0.19, 1.83, 100
+    def search_best_K(self, C, K_accuracy):
+        minK, maxK, razrK = 0.19, 1.83, K_accuracy
         best_cYF = {}
         for idx in range(int(minK*razrK),int(maxK*razrK)):
-
+            self.window.setProgress(int(minK*razrK),int(maxK*razrK)-1, idx)
             try:
                 K = idx / (razrK)
                 cY, cF, result_surface = self.slope.caclulate_slope(C, K)

@@ -14,23 +14,38 @@ way = r"D:\yandex disk\YandexDisk\Python\project_slope (at work)"
 way_surface = r"\slope_surface 45.txt"
 way_parameters = r"\slope_parameters 35.txt"
 
+galocka = 1
+type_args = 1
 
-alpha, phi, gamma, H = 45, 35, 2.5, 100
-test = Search_Constant_Test(alpha, phi, gamma, H)
-C = test.getC()
-print("C = " + str(C))
-lamb = test.getlamba()
-print(alpha, phi, C, gamma*lamb/C)
-slope = Argument_search('manual', [alpha, H, phi, gamma, 0.1, 'red'])
+
+H, alpha, gamma, dx, phi = 100, 45, 2.5, 0.05, 35
+C = 4
+
+if galocka==1:
+    if type_args == 1:
+        slope = Argument_search('manual', [alpha, H, phi, gamma, dx, 'red'])
+    else:
+        slope = Argument_search('auto', [way, way_surface, way_parameters])
+    K = 1.5
+    slope.draw_slope(C, K)
+else:
+    if type_args == 1:
+        slope = Argument_search('manual', [alpha, H, phi, gamma, dx, 'red'])
+    else:
+        slope = Argument_search('auto', [way, way_surface, way_parameters])
+    K_accuracy = 100
+    slope.search_best_K(C, K_accuracy)  # K=1.518541292749629
+
+
+
+
+
+# test = Search_Constant_Test(alpha, phi, gamma, H)
+# C = test.getC()
 # slope = Argument_search('auto', [way, way_surface, way_parameters])
-slope.draw_slope(C, gamma*lamb/C)
 
 
-# slope = Argument_search('manual', [45, 100, 25, 2.5, 0.05, 'red'])
-# slope.draw_slope(13.494222291666834, 1.4769256814848488)
 
-# slope = Argument_search('manual', [45, 100, 35, 2.5, 0.05, 'red'])
-# slope.draw_slope(5.240734270891313, 1.518541292749629)
 
 # for phi in range(30,35,5):
 H, alpha, gamma = 100, 35, 2.5

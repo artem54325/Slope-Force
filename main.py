@@ -33,14 +33,14 @@ slope.draw_slope(C, gamma*lamb/C)
 # slope.draw_slope(5.240734270891313, 1.518541292749629)
 
 # for phi in range(30,35,5):
-#     H, alpha, gamma = 100, 35, 2.5
-#     test = Search_Constant_Test(alpha, phi, gamma, H)
-#     C = test.getC()
-#     lamb = test.getlamba()
-#     print("Входные данные",alpha,phi, C, gamma*lamb/C)
-#     # slope = Argument_search('auto', [way, way_surface, way_parameters])
-#     slope = Argument_search('manual', [alpha, H, phi, gamma, 0.05, 'red'])
-#     slope.search_best_K(C) # K=1.518541292749629
+H, alpha, gamma = 100, 35, 2.5
+# test = Search_Constant_Test(alpha, phi, gamma, H)
+# C = test.getC()
+lamb = test.getlamba()
+# print("Входные данные",alpha,phi, C, gamma*lamb/C)
+# slope = Argument_search('auto', [way, way_surface, way_parameters])
+slope = Argument_search('manual', [alpha, H, phi, gamma, 0.05, 'red'])
+slope.search_best_K(C)
 
 print((time.time() - start_time), 'sec')
 

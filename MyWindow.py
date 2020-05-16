@@ -1,6 +1,8 @@
 import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from Argument_search import Argument_search
+from Search_Constant_Test import Search_Constant_Test
 
 class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -128,6 +130,13 @@ class MyWindow(QtWidgets.QMainWindow):
 
         if (self.bool_physic):
             pass
+        slope = Argument_search('manual', [alpha, h, phi, gamma, dx, 'red'])
+        # Масштабный коэффициент
+        # draw_slope(self, C, K)
+        #or
+        #slope.search_best_K(C)
+
+
 
     def showResult(self):
         pass
